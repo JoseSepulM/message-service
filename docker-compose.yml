@@ -1,22 +1,17 @@
-version: '3.8'
+version: '1'
 services:
-  rabbitmq:
-    image: rabbitmq:3-management
-    container_name: rabbitmq
-    restart: always
+  microservicio:
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - "5672:5672"  # Puerto AMQP para conexión con Spring Boot
-      - "15672:15672" # Interfaz web de RabbitMQ
+      - "3291:3291"
     environment:
-      RABBITMQ_DEFAULT_USER: admin
-      RABBITMQ_DEFAULT_PASS: admin
-    volumes:
-      - rabbitmq_data:/var/lib/rabbitmq
-    networks:
-      - rabbitmq_network
+      - spring.rabbitmq.host=rabbitmq
+      - spring.rabbitmq.port=5672
+      - spring.rabbitmq.username=admin
+      - spring.rabbitmq.password=admin
+    restart: always
 
-volumes:
-  rabbitmq_data:
 
-networks:
-  rabbitmq_network:
+    
