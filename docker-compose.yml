@@ -31,10 +31,11 @@ services:
       - rabbitmq_network 
 volumes:
   rabbitmq_data:
-  
+
 networks:
   rabbitmq_network:
-    driver:bridge
+    driver: bridge
+
 
 
 
