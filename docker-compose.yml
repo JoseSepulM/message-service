@@ -1,5 +1,20 @@
 version: '1'
 services:
+
+rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - rabbitmq_network
   microservicio:
     build:
       context: .
@@ -12,6 +27,15 @@ services:
       - spring.rabbitmq.username=admin
       - spring.rabbitmq.password=admin
     restart: always
+    networks:
+      - rabbitmq_network 
+volumes:
+  rabbitmq_data:
+
+networks:
+  rabbitmq_network:
+    driver: bridge
+
 
 
     
