@@ -1,7 +1,7 @@
 version: '1'
 services:
 
-rabbitmq:
+  rabbitmq:
     image: rabbitmq:3-management
     container_name: rabbitmq
     restart: always
@@ -31,11 +31,11 @@ rabbitmq:
       - rabbitmq_network 
 volumes:
   rabbitmq_data:
-
+  
 networks:
   rabbitmq_network:
-    driver: bridge
+    driver:bridge
 
 
 
-    
+  
